@@ -9,7 +9,6 @@ import java.util.List;
 @Service
 public class UserService {
 
-
     private UserRepository userRepository;
 
     @Autowired
@@ -21,5 +20,9 @@ public class UserService {
         ArrayList<User> userList = new ArrayList<>();
         userRepository.findAll().forEach(user -> userList.add(user));
         return userList;
+    }
+
+    public User findUser(Long userId){
+        return userRepository.findOne(userId);
     }
 }

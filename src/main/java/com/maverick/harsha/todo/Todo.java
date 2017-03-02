@@ -14,7 +14,7 @@ public class Todo {
     private long id;
 
     //Many TODOs for a user
-    @ManyToOne(targetEntity = User.class)
+    @ManyToOne
     private User createdUser;
 
     @Column
@@ -27,19 +27,16 @@ public class Todo {
     @Enumerated(EnumType.STRING)
     private TodoStatus todoStatus = TodoStatus.PENDING;
 
-    @Column
-    @Temporal(TemporalType.TIMESTAMP)
+    @Column(length = 500)
     private DateTime createdTime;
 
-    @Column
-    @Temporal(TemporalType.TIMESTAMP)
+    @Column(length = 500)
     private DateTime deadLine;
 
     protected Todo() {
     }
 
-    public Todo(long id, User createdUser, String title, String description, TodoStatus todoStatus, DateTime createdTime, DateTime deadLine) {
-        this.id = id;
+    public Todo(User createdUser, String title, String description, TodoStatus todoStatus, DateTime createdTime, DateTime deadLine) {
         this.createdUser = createdUser;
         this.title = title;
         this.description = description;
